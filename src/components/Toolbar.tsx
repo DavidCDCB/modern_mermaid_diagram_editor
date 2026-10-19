@@ -5,9 +5,11 @@ import type { ThemeType } from '../utils/themes';
 import { useLanguage } from '../contexts/LanguageContext';
 import BackgroundSelector from './BackgroundSelector';
 import FontSelector from './FontSelector';
+import LayoutSelector from './LayoutSelector';
 import type { BackgroundStyle } from '../utils/backgrounds';
 import type { FontOption } from '../utils/fonts';
 import type { AnnotationType } from '../types/annotation';
+import type { MermaidLayout } from '../utils/mermaidLayout';
 
 interface ToolbarProps {
   currentTheme: ThemeType;
@@ -19,6 +21,8 @@ interface ToolbarProps {
   onBackgroundChange: (bg: BackgroundStyle) => void;
   selectedFont: string;
   onFontChange: (font: FontOption) => void;
+  selectedLayout: MermaidLayout;
+  onLayoutChange: (layout: MermaidLayout) => void;
   selectedTool: AnnotationType | 'select' | null;
   onSelectTool: (tool: AnnotationType | 'select') => void;
   onClearAnnotations: () => void;
@@ -35,6 +39,8 @@ const Toolbar: React.FC<ToolbarProps> = ({
   onBackgroundChange,
   selectedFont,
   onFontChange,
+  selectedLayout,
+  onLayoutChange,
   selectedTool,
   onSelectTool,
   onClearAnnotations,
@@ -58,7 +64,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
   const currentToolConfig = annotationTools.find(tool => tool.id === selectedTool) || annotationTools[0];
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex w-full flex-wrap items-center justify-end gap-2">
       {/* Theme Selector */}
       <div className="relative">
         <button
@@ -93,6 +99,8 @@ const Toolbar: React.FC<ToolbarProps> = ({
           </>
         )}
       </div>
+
+      <LayoutSelector selectedLayout={selectedLayout} onSelectLayout={onLayoutChange} />
 
       {/* Background Selector */}
       <BackgroundSelector

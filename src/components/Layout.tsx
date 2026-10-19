@@ -19,6 +19,7 @@ import { trackEvent } from './GoogleAnalytics';
 import { AnalyticsEvents } from '../hooks/useAnalytics';
 import { findExampleById } from '../utils/examples';
 import { generateShareURL, parseShareURL } from '../utils/compression';
+import type { MermaidLayout } from '../utils/mermaidLayout';
 
 const Layout: React.FC = () => {
   const defaultCode = `graph TD
@@ -30,6 +31,7 @@ const Layout: React.FC = () => {
   const [currentTheme, setCurrentTheme] = useState<ThemeType>('linearLight');
   const [selectedBackground, setSelectedBackground] = useState<BackgroundStyle>(backgrounds[0]);
   const [selectedFont, setSelectedFont] = useState<FontOption>(fonts[0]);
+  const [selectedLayout, setSelectedLayout] = useState<MermaidLayout>('auto');
   const [selectedTool, setSelectedTool] = useState<AnnotationType | 'select' | null>('select');
   const [annotationCount, setAnnotationCount] = useState<number>(0);
   const [leftPanelWidth, setLeftPanelWidth] = useState<number>(30); // 默认 30%
@@ -430,7 +432,7 @@ const Layout: React.FC = () => {
           className="bg-gray-50 dark:bg-gray-900 flex flex-col relative flex-1"
           style={{ width: isFullscreen ? '100%' : `${100 - leftPanelWidth}%` }}
         >
-           <div className="absolute top-4 right-4 z-10 flex items-start gap-2">
+           <div className="absolute top-4 left-4 right-4 z-10 flex items-start">
               <Toolbar 
                 currentTheme={currentTheme} 
                 onThemeChange={handleThemeChange}
@@ -441,6 +443,8 @@ const Layout: React.FC = () => {
                 onBackgroundChange={handleBackgroundChange}
                 selectedFont={selectedFont.id}
                 onFontChange={handleFontChange}
+                selectedLayout={selectedLayout}
+                onLayoutChange={setSelectedLayout}
                 selectedTool={selectedTool}
                 onSelectTool={handleSelectTool}
                 onClearAnnotations={handleClearAnnotations}
@@ -453,6 +457,7 @@ const Layout: React.FC = () => {
              themeConfig={themes[currentTheme]}
              customBackground={selectedBackground}
              customFont={selectedFont}
+             selectedLayout={selectedLayout}
              onCodeChange={setCode}
              selectedTool={selectedTool}
              onSelectTool={handleSelectTool}

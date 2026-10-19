@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@mermaid-js/layout-elk':
+        specifier: 0.2.3
+        version: 0.2.3(mermaid@11.12.1)
       '@tailwindcss/vite':
         specifier: ^4.1.17
         version: 4.1.17(vite@7.2.4(@types/node@24.10.1)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1))
@@ -959,6 +962,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@mermaid-js/layout-elk@0.2.3':
+    resolution: {integrity: sha512-m46RVGfvKK1PSMdAFGDz2nksI4jusEkFxvf0lb48bYWmqLQxZpjtpruiw29MbOy9rlWJtuMf9EzG9fAF8CVZbg==}
+    peerDependencies:
+      mermaid: ^11.0.2
 
   '@mermaid-js/parser@0.6.3':
     resolution: {integrity: sha512-lnjOhe7zyHjc+If7yT4zoedx2vo4sHaTmtkl1+or8BRTnCtDmcTpAjpzDSfCZrshM5bCoz0GyidzadJAH1xobA==}
@@ -1974,6 +1982,9 @@ packages:
 
   electron-to-chromium@1.5.260:
     resolution: {integrity: sha512-ov8rBoOBhVawpzdre+Cmz4FB+y66Eqrk6Gwqd8NGxuhv99GQ8XqMAr351KEkOt7gukXWDg6gJWEMKgL2RLMPtA==}
+
+  elkjs@0.9.3:
+    resolution: {integrity: sha512-f/ZeWvW/BCXbhGEf1Ujp29EASo/lk1FDnETgNKwJrsVvGZhUWCZyg3xLJjAsxfOmt8KjswHmI5EwCQcPMpOYhQ==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -4452,6 +4463,12 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
+  '@mermaid-js/layout-elk@0.2.3(mermaid@11.12.1)':
+    dependencies:
+      d3: 7.9.0
+      elkjs: 0.9.3
+      mermaid: 11.12.1
+
   '@mermaid-js/parser@0.6.3':
     dependencies:
       langium: 3.3.1
@@ -5526,6 +5543,8 @@ snapshots:
       jake: 10.9.4
 
   electron-to-chromium@1.5.260: {}
+
+  elkjs@0.9.3: {}
 
   emoji-regex@8.0.0: {}
 

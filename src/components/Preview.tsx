@@ -12,12 +12,16 @@ import AnnotationColorPicker from './AnnotationColorPicker';
 import type { Annotation, AnnotationType, Point } from '../types/annotation';
 import { trackEvent } from './GoogleAnalytics';
 import { AnalyticsEvents } from '../hooks/useAnalytics';
+import elkLayouts from '@mermaid-js/layout-elk';
+import { applyLayoutOverride, getLayoutForDiagram, isErDiagram, type MermaidLayout } from '../utils/mermaidLayout';
+import { addErRelationshipLineJumps } from '../utils/erLineJumps';
 
 interface PreviewProps {
   code: string;
   themeConfig: ThemeConfig;
   customBackground?: BackgroundStyle;
   customFont?: FontOption;
+  selectedLayout: MermaidLayout;
   onCodeChange?: (code: string) => void;
   selectedTool: AnnotationType | 'select' | null;
   onSelectTool: (tool: AnnotationType | 'select') => void;
@@ -39,8 +43,9 @@ mermaid.initialize({
   securityLevel: 'loose',
   suppressErrorRendering: true, // 隐藏错误渲染到 DOM
 });
+mermaid.registerLayoutLoaders(elkLayouts);
 
-const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, customBackground, customFont, onCodeChange, selectedTool, onSelectTool, onAnnotationCountChange, isFullscreen, onToggleFullscreen }, ref) => {
+const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, customBackground, customFont, selectedLayout, onCodeChange, selectedTool, onSelectTool, onAnnotationCountChange, isFullscreen, onToggleFullscreen }, ref) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [svg, setSvg] = useState<string>('');
@@ -1216,16 +1221,22 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
           `
         } : themeConfig.mermaidConfig;
 
+        const diagramLayout = getLayoutForDiagram(code, selectedLayout, configWithFont.layout);
+        const renderCode = selectedLayout === 'auto' ? code : applyLayoutOverride(code, selectedLayout);
+
         mermaid.initialize({
             startOnLoad: false,
             suppressErrorRendering: true,
             ...configWithFont,
+            layout: diagramLayout,
         });
 
-        const { svg: renderedSvg } = await mermaid.render(id, code);
+        const { svg: renderedSvg } = await mermaid.render(id, renderCode);
         
         // Post-process SVG
-        let processedSvg = renderedSvg;
+        let processedSvg = isErDiagram(code) && diagramLayout.startsWith('elk')
+          ? addErRelationshipLineJumps(renderedSvg)
+          : renderedSvg;
 
         // 移除 width/height 的百分比值，使用 viewBox 定义的固定尺寸
         // 这样缩放计算才能准确
@@ -1345,7 +1356,7 @@ const Preview = forwardRef<PreviewHandle, PreviewProps>(({ code, themeConfig, cu
     }, 300); // 降低防抖延迟从 600ms 到 300ms，提升响应速度
 
     return () => clearTimeout(timeoutId);
-  }, [code, themeConfig, actualFont, nodeColors, renderKey]);
+  }, [code, themeConfig, actualFont, nodeColors, renderKey, selectedLayout]);
 
   // 自动调整缩放以适应容器
   useEffect(() => {

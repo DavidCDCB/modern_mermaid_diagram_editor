@@ -26,6 +26,14 @@ export interface Translation {
   
   // Toolbar
   theme: string;
+  layout: string;
+  layoutAuto: string;
+  layoutDagre: string;
+  layoutElkLayered: string;
+  layoutElkStress: string;
+  layoutElkForce: string;
+  layoutElkMrTree: string;
+  layoutElkSporeOverlap: string;
   export: string;
   exportDesc: string;
   copy: string;
@@ -136,6 +144,14 @@ export const translations: Record<Language, Translation> = {
     
     // Toolbar
     theme: 'Theme',
+    layout: 'Layout',
+    layoutAuto: 'Automatic',
+    layoutDagre: 'Dagre (default)',
+    layoutElkLayered: 'ELK Layered (orthogonal)',
+    layoutElkStress: 'ELK Stress',
+    layoutElkForce: 'ELK Force',
+    layoutElkMrTree: 'ELK Multi-root tree',
+    layoutElkSporeOverlap: 'ELK Spore overlap',
     export: 'Export',
     exportDesc: 'Export the diagram as an image',
     copy: 'Copy',
@@ -244,6 +260,14 @@ export const translations: Record<Language, Translation> = {
     
     // Toolbar
     theme: '主题',
+    layout: '布局',
+    layoutAuto: '自动',
+    layoutDagre: 'Dagre（默认）',
+    layoutElkLayered: 'ELK 分层（直角连接）',
+    layoutElkStress: 'ELK 力导向应力',
+    layoutElkForce: 'ELK 力导向',
+    layoutElkMrTree: 'ELK 多根树',
+    layoutElkSporeOverlap: 'ELK 孢子重叠',
     export: '导出',
     exportDesc: '导出图表为图片',
     copy: '复制',
@@ -352,6 +376,14 @@ export const translations: Record<Language, Translation> = {
     
     // Toolbar
     theme: '主題',
+    layout: '佈局',
+    layoutAuto: '自動',
+    layoutDagre: 'Dagre（預設）',
+    layoutElkLayered: 'ELK 分層（直角連線）',
+    layoutElkStress: 'ELK 應力導向',
+    layoutElkForce: 'ELK 力導向',
+    layoutElkMrTree: 'ELK 多根樹',
+    layoutElkSporeOverlap: 'ELK 孢子重疊',
     export: '匯出',
     exportDesc: '將圖表導出為圖片',
     copy: '複製',
@@ -460,6 +492,14 @@ export const translations: Record<Language, Translation> = {
     
     // Toolbar
     theme: 'テーマ',
+    layout: 'レイアウト',
+    layoutAuto: '自動',
+    layoutDagre: 'Dagre（デフォルト）',
+    layoutElkLayered: 'ELK レイヤー（直交）',
+    layoutElkStress: 'ELK ストレス',
+    layoutElkForce: 'ELK 力学',
+    layoutElkMrTree: 'ELK マルチルートツリー',
+    layoutElkSporeOverlap: 'ELK スポア重なり',
     export: 'エクスポート',
     exportDesc: '図表を画像としてエクスポート',
     copy: 'コピー',
@@ -568,6 +608,14 @@ export const translations: Record<Language, Translation> = {
     
     // Toolbar
     theme: 'Tema',
+    layout: 'Diseño',
+    layoutAuto: 'Automático',
+    layoutDagre: 'Dagre (predeterminado)',
+    layoutElkLayered: 'ELK por capas (ortogonal)',
+    layoutElkStress: 'ELK de estrés',
+    layoutElkForce: 'ELK de fuerzas',
+    layoutElkMrTree: 'ELK de árbol multirraíz',
+    layoutElkSporeOverlap: 'ELK de solapamiento de esporas',
     export: 'Exportar',
     exportDesc: 'Exportar el diagrama como imagen',
     copy: 'Copiar',
@@ -676,6 +724,14 @@ export const translations: Record<Language, Translation> = {
     
     // Toolbar
     theme: 'Tema',
+    layout: 'Layout',
+    layoutAuto: 'Automático',
+    layoutDagre: 'Dagre (padrão)',
+    layoutElkLayered: 'ELK em camadas (ortogonal)',
+    layoutElkStress: 'ELK de estresse',
+    layoutElkForce: 'ELK de forças',
+    layoutElkMrTree: 'ELK de árvore multirraiz',
+    layoutElkSporeOverlap: 'ELK de sobreposição de esporos',
     export: 'Exportar',
     exportDesc: 'Exportar o diagrama como imagem',
     copy: 'Copiar',
