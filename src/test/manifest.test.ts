@@ -13,7 +13,7 @@ describe('Chrome Extension Manifest', () => {
     if (!fs.existsSync(manifestPath)) return;
     const content = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
     expect(content.manifest_version).toBe(3);
-    expect(content.name).toBe('Modern Mermaid');
+    expect(content.name).toBe('Modern Mermaid Editor');
     expect(content.action).toBeDefined();
     expect(content.action.default_popup).toBeUndefined();
     expect(content.background).toBeDefined();

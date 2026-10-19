@@ -15,6 +15,7 @@ describe('LayoutSelector', () => {
 
     const selector = screen.getByRole('combobox', { name: 'Layout' });
     expect(selector).toHaveValue('auto');
+    expect(selector.parentElement?.querySelector('svg.lucide-workflow')).toBeInTheDocument();
     expect(screen.getByRole('option', { name: 'ELK Force' })).toBeInTheDocument();
     expect(screen.queryByRole('option', { name: /COSE-Bilkent/ })).not.toBeInTheDocument();
 

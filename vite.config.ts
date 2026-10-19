@@ -13,9 +13,9 @@ export default defineConfig(({ mode }) => {
       !isExtension && VitePWA({
         registerType: 'autoUpdate',
         manifest: {
-          name: "Modern Mermaid",
-          short_name: "Mermaid",
-          description: "A modern, beautiful Mermaid.js editor with custom themes and high-quality export.",
+          name: "Modern Mermaid Editor",
+          short_name: "Mermaid Editor",
+          description: "A modern, beautiful Mermaid.js diagram editor with custom themes and high-quality export.",
           start_url: "/",
           display: "standalone",
           background_color: "#ffffff",
@@ -30,6 +30,12 @@ export default defineConfig(({ mode }) => {
               src: "/icon-512.png",
               sizes: "512x512",
               type: "image/png",
+            },
+            {
+              src: "/icon-512.png",
+              sizes: "512x512",
+              type: "image/png",
+              purpose: "any maskable",
             },
           ],
         },

@@ -1,4 +1,5 @@
 import type React from 'react';
+import { Workflow } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { MERMAID_LAYOUT_OPTIONS, type MermaidLayout } from '../utils/mermaidLayout';
 
@@ -12,6 +13,7 @@ const LayoutSelector: React.FC<LayoutSelectorProps> = ({ selectedLayout, onSelec
 
   return (
     <label className="flex h-9 items-center gap-1.5 rounded-md border border-gray-300 bg-white px-2 shadow-sm dark:border-gray-600 dark:bg-gray-800">
+      <Workflow className="h-4 w-4 text-gray-600 dark:text-gray-300" aria-hidden="true" />
       <span className="hidden text-xs font-medium text-gray-600 dark:text-gray-300 sm:inline">{t.layout}</span>
       <select
         aria-label={t.layout}
